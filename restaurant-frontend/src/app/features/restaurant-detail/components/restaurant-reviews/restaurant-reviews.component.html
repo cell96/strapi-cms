@@ -1,0 +1,18 @@
+<div class="p-4">
+  <div *ngFor="let review of reviews" class="border-b border-gray-200 pb-4 mb-4">
+      <div class="flex items-center mb-2">
+          <div class="text-lg font-bold mr-2">Rating:</div>
+          <div class="flex">
+              <ng-container *ngFor="let _ of [].constructor(getNumericRating(review.attributes.rating))">
+                  <span class="text-yellow-400 text-xl">★</span>
+              </ng-container>
+              <ng-container *ngFor="let _ of [].constructor(5 - getNumericRating(review.attributes.rating))">
+                  <span class="text-gray-300 text-xl">★</span>
+              </ng-container>
+          </div>
+      </div>
+      <div class="text-gray-700">
+          "{{ review.attributes.content }}"
+      </div>
+  </div>
+</div>

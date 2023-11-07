@@ -1,0 +1,35 @@
+<div class="bg-white rounded-lg shadow-md p-6 w-full max-w-xl mx-auto my-4">
+  <!-- Menu Name -->
+  <div class="text-2xl font-bold mb-4">
+      {{ menu.name }}
+  </div>
+
+  <!-- Menu Description -->
+  <p class="text-gray-700 leading-relaxed">
+      {{ menu.description }}
+  </p>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto my-4">
+  <!-- Heading -->
+  <h2 class="text-2xl font-bold mb-4 text-center">Menu</h2>
+
+  <!-- Menu Items -->
+  <div class="space-y-6">
+      <div *ngFor="let item of menuItems" class="border-b pb-4 last:border-0">
+          <!-- Item Name and Price -->
+          <div class="flex justify-between items-center mb-2">
+              <span class="text-xl font-semibold">{{ item.name }}</span>
+              <span class="text-lg font-medium text-green-500">${{ item.price.toFixed(2) }}</span>
+          </div>
+
+          <!-- Item Description -->
+          <p class="text-gray-700 mb-2">{{ item.description }}</p>
+
+          <!-- Item Ingredients -->
+          <div class="text-sm text-gray-500">
+              <span class="font-medium">Ingredients:</span> {{ item.ingredients }}
+          </div>
+      </div>
+  </div>
+</div>
+

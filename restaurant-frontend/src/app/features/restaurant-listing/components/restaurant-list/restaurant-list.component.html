@@ -1,0 +1,35 @@
+<div class="container mx-auto p-6">
+  <!-- Heading -->
+  <div class="text-2xl font-bold mb-5">Restaurants List</div>
+
+  <!-- If no restaurants available -->
+  <div *ngIf="!(restaurants$ | async)?.length" class="text-center my-5 text-xl">
+      No restaurants available.
+  </div>
+
+  <!-- Restaurant list -->
+  <div class="flex bg-white p-4 rounded-md shadow-md mb-4" *ngFor="let restaurant of restaurants$ | async">
+    <!-- Image Container -->
+    <div class="relative w-48 h-32 mr-4">
+        <img [src]="'http://localhost:1337' + restaurant.imageUrl"
+             alt="{{ restaurant.name }}"
+             class="w-full h-full object-cover rounded-md transition-transform transform hover:scale-110"
+             *ngIf="restaurant.imageUrl">
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity hover:opacity-100">
+            <span class="text-white font-bold">View Larger</span>
+        </div>
+    </div>
+
+    <!-- Details Container -->
+    <div>
+        <h2 class="text-xl font-bold mb-2">
+          <a [routerLink]="['/restaurant', restaurant.id]">{{ restaurant.name }}</a>
+        </h2>
+        <p class="text-gray-600 mb-2">{{ restaurant.description }}</p>
+        <p class="text-gray-500 mb-1">Average Price: ${{ restaurant.avgPrice }}</p>
+        <p class="text-gray-400 text-xs">Created At: {{ restaurant.createdAt | date: 'short' }}</p>
+        <p class="text-gray-400 text-xs">Updated At: {{ restaurant.updatedAt | date: 'short' }}</p>
+        <p class="text-gray-400 text-xs">Published At: {{ restaurant.publishedAt | date: 'short' }}</p>
+    </div>
+  </div>
+</div>
